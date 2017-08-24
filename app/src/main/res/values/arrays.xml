@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_rate_options">
+        <item>@string/no_rate</item>
+        <item>@string/rate1</item>
+        <item>@string/rate2</item>
+        <item>@string/rate3</item>
+        <item>@string/rate4</item>
+        <item>@string/rate5</item>
+
+    </string-array>
+
+</resources>

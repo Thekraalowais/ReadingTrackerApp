@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ReadingTrackerApp</string>
+    <string name="no_rate">No rate</string>
+    <string name="rate1">1 Star</string>
+    <string name="rate2">2 Stars</string>
+    <string name="rate3">3 Stars</string>
+    <string name="rate4">4 Stars</string>
+    <string name="rate5">5 Stars</string>
+    <string name="save">save</string>
+
+</resources>
