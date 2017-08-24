@@ -10,6 +10,7 @@
     <string name="name_label">Book name: </string>
     <string name="page_label">Current page: </string>
     <string name="rate_label">Book rating: </string>
+    <string name="book_label">Book id: </string>
 
 
 </resources>
