@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbHelper = new DbHelper(this);
+        displayData();
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.fab);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayData() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        cursor = db.query(ReadingEntry.TABLE_NAME, null, null, null, null, null, null);
-//        cursor = db.rawQuery("SELECT  * FROM Reading", null);
+//        cursor = db.query(ReadingEntry.TABLE_NAME, null, null, null, null, null, null);
+        cursor = db.rawQuery("SELECT  * FROM Reading", null);
 //        TextView displayText = (TextView) findViewById(R.id.display_text);
 //        try {
 ////            displayText.setText("The reading table contain:" + cursor.getCount() + "\n");
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //
 //        } finally {
-        cursor.close();
+//        cursor.close();
 //        }
     }
 

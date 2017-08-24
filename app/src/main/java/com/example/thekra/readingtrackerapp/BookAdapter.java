@@ -33,14 +33,15 @@ public class BookAdapter extends CursorAdapter {
         TextView name = (TextView) view.findViewById(R.id.book_name);
         TextView page = (TextView) view.findViewById(R.id.book_pages);
         TextView rate = (TextView) view.findViewById(R.id.book_rate);
+        if (cursor.moveToNext()) {
+                String nameString = cursor.getString(cursor.getColumnIndex("name"));
+                int pageInt = cursor.getInt(cursor.getColumnIndex("page"));
+                int RateInt = cursor.getInt(cursor.getColumnIndex("Rating"));
 
-        String nameString = cursor.getString(cursor.getColumnIndex("name"));
-        int pageInt = cursor.getInt(cursor.getColumnIndex("page"));
-        int RateInt = cursor.getInt(cursor.getColumnIndex("Rating"));
-
-        name.setText(nameString);
-        page.setText(String.valueOf(pageInt));
-        rate.setText(String.valueOf(RateInt));
+                name.setText(nameString);
+                page.setText(String.valueOf(pageInt));
+                rate.setText(String.valueOf(RateInt));
+            }
 
     }
 }

@@ -7,5 +7,9 @@
     <string name="rate4">4 Stars</string>
     <string name="rate5">5 Stars</string>
     <string name="save">save</string>
+    <string name="name_label">Book name: </string>
+    <string name="page_label">Current page: </string>
+    <string name="rate_label">Book rating: </string>
+
 
 </resources>
