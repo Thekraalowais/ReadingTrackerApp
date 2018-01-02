@@ -1,11 +1,12 @@
 package com.example.thekra.readingtrackerapp;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,25 +68,43 @@ public class EditActivity extends AppCompatActivity {
         });
     }
 
-    private void insert() {
-        String name = bookName.getText().toString().trim();
-        String pageString = page.getText().toString().trim();
-        int pagesInt = Integer.parseInt(pageString);
-        DbHelper dbHelper = new DbHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+    public void insert() {
+        try {
+            String name = bookName.getText().toString().trim();
+            String pageString = page.getText().toString().trim();
+            int pagesInt = Integer.parseInt(pageString);
 
-        ContentValues values=new ContentValues();
-        values.put(ReadingEntry.COLUMN_NAME, name);
-        values.put(ReadingEntry.COLUMN_PAGE, pagesInt);
-        values.put(ReadingEntry.COLUMN_RATING, Rating);
-        Log.i("INSERT","FFFFFFFFFFFF" + values);
+            DbHelper dbHelper = new DbHelper(this);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        long newRow=db.insert(ReadingEntry.TABLE_NAME, null,values);
-        Log.i("NEWROW","FFFFFFFFFFFF" + newRow);
-        if(newRow==-1){
-            Toast.makeText(EditActivity.this, "Error", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(EditActivity.this, "Succefully add book", Toast.LENGTH_SHORT).show();
+            ContentValues values = new ContentValues();
+            values.put(ReadingEntry.COLUMN_NAME, name);
+            values.put(ReadingEntry.COLUMN_PAGE, pagesInt);
+            values.put(ReadingEntry.COLUMN_RATING, Rating);
+
+            long newRow = db.insert(ReadingEntry.TABLE_NAME, null, values);
+
+            if (newRow == -1) {
+                Toast.makeText(EditActivity.this, "Fail add book", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(EditActivity.this, "Successfully add book", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        } catch (NumberFormatException e) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage("Unsaved data!").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            AlertDialog alertDialog = dialog.create();
+            alertDialog.show();
         }
     }
 
@@ -97,10 +116,9 @@ public class EditActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.save:
                 insert();
-                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

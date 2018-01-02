@@ -3,7 +3,6 @@ package com.example.thekra.readingtrackerapp;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.example.thekra.readingtrackerapp.Contract.ReadingEntry;
 
 
@@ -19,9 +18,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String SQL_CREATE_TABLE = "CREATE TABLE " + ReadingEntry.TABLE_NAME + " ("
                 + ReadingEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ReadingEntry.COLUMN_NAME + " TEXT, "
-                + ReadingEntry.COLUMN_PAGE + " INTEGER, "
-                + ReadingEntry.COLUMN_RATING + " INTEGER );";
+                + ReadingEntry.COLUMN_NAME + " TEXT NOT NULL, "
+                + ReadingEntry.COLUMN_PAGE + " INTEGER NOT NULL, "
+                + ReadingEntry.COLUMN_RATING + " INTEGER NOT NULL );";
         db.execSQL(SQL_CREATE_TABLE);
     }
 
@@ -29,4 +28,6 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+
 }
